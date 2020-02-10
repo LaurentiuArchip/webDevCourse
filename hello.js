@@ -28,11 +28,67 @@ for(i=0; i<size; i++){
 }
 printLine(size+2, "-");
 
+// closure example
+/*
+multiplier uses two variables, but only one is passed => 
+??????????
+*/
+let twice = multiplier(4);
+console.log(twice);
+console.log(multiplier(3));
+console.log(twice(5));
+
+// recursion example
+console.log(power(2 ,3)); 
+/*
+= 2 * power(2,2)
+= 2 * 2 * power (2,1)
+= 2 * 2 * 2 * power (2,0)
+= 2 * 2 * 2 * 1
+= 8
+*/
+
+// on template literals
+let word1 = "farm";
+console.log(`This is a ${word1} on a hill`); // use template literals, with backticks
+
+// bean counting exercise
+console.log(`The number of \"t\" is ${countChar("this team is the team", "t")}`);
+
 
 ///////////////////////////////////////////
-function printLine(size, char){
+function printLine(size, char) {
     let line = "";
     for(i=0; i<size; i++)
         line += char;
     console.log(line);
+}
+
+function multiplier(factor) {
+    return number => number * factor;
+}
+
+function power(base, exponent) {
+    if(exponent == 0) {
+        return 1;
+    } else {
+        return base * power(base, exponent - 1);
+    }
+}
+
+function zeroPad(number, width){
+    let string = String(number);
+    while(string.length < width){
+        string = "0" + string;
+    }
+    return string;
+}
+
+function countChar(aString, aChar){
+    let count = 0;
+    for(i=0; i<aString.length; i++){
+        if(aString[i] == aChar)
+            count++;
+    }
+    return count;
 }
